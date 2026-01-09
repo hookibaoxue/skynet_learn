@@ -1,12 +1,13 @@
 root = "./"
--- 告诉 Skynet 去哪里找 Lua 服务脚本
+thread = 8
+logger = nil
+harbor = 0  -- 关键点：设置为 0 表示单机模式，不启动 cslave/master
+start = "helloworld"	-- 启动你的 helloworld.lua
+bootstrap = "snlua bootstrap"	-- 核心启动脚本
+
+-- 路径配置（保持不变）
 luaservice = root.."service/?.lua;"..root.."test/?.lua;"..root.."examples/?.lua"
--- 核心引擎需要的 C 模块路径
 lualoader = root.."lualib/loader.lua"
 lua_path = root.."lualib/?.lua;"..root.."lualib/?/init.lua"
 lua_cpath = root.."luaclib/?.so"
-
--- 启动后的第一个服务名
-bootstrap = "snlua bootstrap"
--- 引导程序启动后，第一个运行的业务逻辑
-start = "helloworld"  -- 这里对应我们刚才写的 helloworld.lua
+snax = root.."examples/?.lua;"..root.."test/?.lua"
