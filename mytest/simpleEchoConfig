@@ -1,0 +1,11 @@
+include "config.mypath"
+
+thread = 8
+logger = nil
+logpath = "."
+harbor = 0
+start = "simpleEchoMain"	-- main script
+bootstrap = "snlua bootstrap"	-- The service for bootstrap
+-- standalone = "0.0.0.0:2013"  -- 单机模式不需要
+-- snax_interface_g = "snax_g"
+--cpath = root.."cservice/?.so"
