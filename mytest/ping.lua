@@ -14,9 +14,9 @@ function CMD.ping(source, addstep)
     skynet.sleep(100)
     local num = addstep + _addstep
     skynet.send(source, "lua", "ping", addstep + _addstep)
-    if num >= 10 then
-        skynet.exit()
-    end
+    -- if num >= 10 then
+    --     skynet.exit()
+    -- end
 end
 
 skynet.start(function()
