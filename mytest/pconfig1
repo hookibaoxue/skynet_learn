@@ -1,0 +1,8 @@
+include "config.mypath"
+thread = 8
+logger = nil
+logpath = "."
+harbor = 0
+start = "ClusterPingTest"	-- main script
+bootstrap = "snlua bootstrap"	-- The service for bootstrap
+node = "node1"

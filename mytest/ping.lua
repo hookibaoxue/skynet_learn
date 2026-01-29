@@ -1,22 +1,31 @@
 local skynet = require "skynet"
-
+local cluster = require "skynet.cluster"
 local CMD = {}
 
 local _addstep = 1
+local mynode = skynet.getenv("node")
 
 function CMD.start(source, target)
     skynet.send(target, "lua", "ping", _addstep)
 end
 
-function CMD.ping(source, addstep)
+function CMD.ping(source, addstep, targetNode, targetAddr)
     local selfAddres = skynet.self()
     skynet.error("addres:[",selfAddres, "] recv ping count: ", addstep)
     skynet.sleep(100)
     local num = addstep + _addstep
-    skynet.send(source, "lua", "ping", addstep + _addstep)
+    -- skynet.send(source, "lua", "ping", addstep + _addstep)
     -- if num >= 10 then
     --     skynet.exit()
     -- end
+
+    cluster.send(targetNode, targetAddr, "ping", num, mynode, skynet.self())
+end
+
+
+-- "node2", "pong"
+function CMD.start2(source, targetNode, targetAddr)
+    cluster.send(targetNode, targetAddr, "ping", 1, mynode, skynet.self())
 end
 
 skynet.start(function()
